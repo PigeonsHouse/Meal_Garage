@@ -1,20 +1,20 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class SignUpPayload(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     password: str
 
 
 class SignInPayload(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 
 class User(BaseModel):
     user_id: str
-    email: str
+    email: EmailStr
     name: str
 
     class Config:

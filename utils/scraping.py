@@ -4,6 +4,7 @@ from schemas.foods import Recipes
 
 
 def scraping_data(recipe_name):
+    print(recipe_name)
     base_url = "https://cookpad.com"
 
     res = requests.get(f"{base_url}/search/{recipe_name}")

@@ -33,3 +33,7 @@ class Recipes(BaseModel):
     title: str
     recipe_thumbnail: str
     recipe_url: str
+
+
+class FoodName(BaseModel):
+    name: str

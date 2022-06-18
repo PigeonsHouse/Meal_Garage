@@ -15,6 +15,7 @@ class Garages(BaseModel):
     food_id: str
     quantity: int
     limit_at: date
+    thumbnail_url: str
 
 
 class GarageResponse(BaseModel):
@@ -22,6 +23,7 @@ class GarageResponse(BaseModel):
     name: str
     quantity: int
     limit_at: date
+    thumbnail_url: str
 
     class Config:
         orm_mode = True

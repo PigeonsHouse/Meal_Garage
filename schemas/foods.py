@@ -27,3 +27,9 @@ class GarageResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class Recipes(BaseModel):
+    title: str
+    recipe_thumbnail: str
+    recipe_url: str

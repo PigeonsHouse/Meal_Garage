@@ -6,7 +6,7 @@ from db.database import get_db
 from schemas.main import DeleteDetailModel
 from schemas.users import AuthInfo, SignInPayload, SignUpPayload, User as UserSchema
 from cruds.users import create_user, delete_user_by_id, get_user_by_id
-from utils import generate_token, get_current_user
+from utils.utils import generate_token, get_current_user
 
 user_router = APIRouter()
 

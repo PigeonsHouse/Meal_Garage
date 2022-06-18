@@ -29,4 +29,4 @@ jobs:
         run: |
           docker-compose up -d --build server db
       - name: Run Test
-        run: docker exec -i task_burner_backend_server_1 pipenv run pytest
+        run: docker-compose exec server pipenv run pytest

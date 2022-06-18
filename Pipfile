@@ -17,6 +17,7 @@ pydantic = {extras = ["email"], version = "*"}
 pytest = "*"
 sqlalchemy-utils = "*"
 python-dotenv = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 

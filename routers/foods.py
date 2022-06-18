@@ -4,7 +4,7 @@ from fastapi import APIRouter
 from fastapi.params import Depends
 from sqlalchemy.orm.session import Session
 from db.database import get_db
-from cruds.foods import create_food, get_foods_list, delete_food_by_id, update_garage
+from cruds.foods import create_food, get_foods_list, delete_food_by_id, update_garage, get_food_order_by_limit
 from utils.utils import get_current_user
 from utils.scraping import scraping_data
 from schemas.foods import GarageResponse, Recipes
@@ -37,12 +37,15 @@ async def delete_food(food_id: str, db: Session = Depends(get_db), user_id: str 
     return {'detail': 'OK'}
 
 
-@food_router.get('/{recipe_name}', response_model=List[Recipes])
-async def get_recipe_by_name(recipe_name: str):
-    res = scraping_data(recipe_name)
+@food_router.get('/recipes', response_model=List[Recipes])
+async def get_recipes(db: Session = Depends(get_db), user_id: str = Depends(get_current_user)):
+    food_names = get_food_order_by_limit(db, user_id)
+    food_name = '%20'.join(food_names)
+    res = scraping_data(food_name)
     return res
 
 
-@food_router.get('/recipes')
-async def get_recipes():
-    pass
+@food_router.get('/recipes/{recipe_name}', response_model=List[Recipes], dependencies=[Depends(get_current_user)])
+async def get_recipe_by_name(recipe_name: str):
+    res = scraping_data(recipe_name)
+    return res

@@ -21,8 +21,7 @@ def generate_token(db: Session, email: str, password: str) -> str:
 
     jwt_payload = {
         'exp': exp_datetime.timestamp(),
-        'user_id': user.user_id,
-        'user_email': user.email
+        'user_id': user.user_id
     }
 
     encoded_jwt = jwt.encode(jwt_payload, SECRET, algorithm='HS256')

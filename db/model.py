@@ -26,7 +26,7 @@ class Food(Base):
 
 class Garage(Base):
     __tablename__ = 'garages'
-    user_id = Column(String, ForeignKey('users.user_id'))
-    food_id = Column(String, ForeignKey('foods.food_id'))
+    user_id = Column(String, ForeignKey('users.user_id'), primary_key=True)
+    food_id = Column(String, ForeignKey('foods.food_id'), primary_key=True)
     quantity = Column(Integer)
     limit_at = Column(Date)

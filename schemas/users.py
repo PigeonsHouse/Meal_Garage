@@ -14,6 +14,7 @@ class SignInPayload(BaseModel):
 
 class User(BaseModel):
     user_id: str
+    email: str
     name: str
 
     class Config:

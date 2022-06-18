@@ -26,7 +26,7 @@ async def get_foods(db: Session = Depends(get_db), user_id: str = Depends(get_cu
 @food_router.delete('/{food_id}')
 async def delete_food(food_id: str, db: Session = Depends(get_db), user_id: str = Depends(get_current_user)):
     delete_food_by_id(db, food_id, user_id)
-    return {'detail': 'OK!'}
+    return {'detail': 'OK'}
 
 
 # @food_router.get('/recipe')

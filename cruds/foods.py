@@ -50,7 +50,7 @@ def create_food(db: Session, name: str, quantity: int, limit_at: date, user_id: 
                 limit_at=garage_orm.limit_at
             )
         else:
-            garage.quantity = quantity
+            garage.quantity += quantity
             db.commit()
 
             return GarageResponse(

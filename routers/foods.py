@@ -40,7 +40,10 @@ async def delete_food(food_id: str, db: Session = Depends(get_db), user_id: str 
 @food_router.get('/recipes', response_model=List[Recipes])
 async def get_recipes(db: Session = Depends(get_db), user_id: str = Depends(get_current_user)):
     food_names = get_food_order_by_limit(db, user_id)
-    food_name = '%20'.join(food_names)
+    if len(food_names) > 0:
+        food_name = '%20'.join(food_names)
+    else:
+        food_name = '今日のオススメ'
     res = scraping_data(food_name)
     return res
 

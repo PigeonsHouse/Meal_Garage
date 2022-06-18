@@ -82,3 +82,15 @@ def delete_food_by_id(db: Session, food_id: str, user_id: str):
     db.commit()
 
     return
+
+
+def update_garage(db: Session, quantity: int, food_id: str, user_id: str):
+    garage_orm = db.query(Garage).filter(Garage.food_id == food_id, Garage.user_id == user_id).first()
+    if garage_orm is None:
+        raise HTTPException(status_code=404, detail='food is not exist')
+    garage_orm.quantity = quantity
+    db.commit()
+    food = db.query(Food.food_id, Food.name, Garage.quantity, Garage.limit_at, Garage.thumbnail_url).filter(
+        Food.food_id == Garage.food_id, Garage.user_id == user_id, Garage.food_id == food_id).first()
+    res = GarageResponse.from_orm(food)
+    return res

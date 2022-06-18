@@ -4,7 +4,7 @@ from fastapi import APIRouter
 from fastapi.params import Depends
 from sqlalchemy.orm.session import Session
 from db.database import get_db
-from cruds.foods import create_food, get_foods_list, delete_food_by_id
+from cruds.foods import create_food, get_foods_list, delete_food_by_id, update_garage
 from utils.utils import get_current_user
 from utils.scraping import scraping_data
 from schemas.foods import GarageResponse, Recipes
@@ -23,6 +23,12 @@ async def post_food(name: str, quantity: int, limit_at: date, thumbnail_url: str
 async def get_foods(db: Session = Depends(get_db), user_id: str = Depends(get_current_user)):
     garage_list = get_foods_list(db, user_id)
     return garage_list
+
+
+@food_router.put('/{food_id}', response_model=GarageResponse)
+async def update_food(food_id: str, quantity: int, db: Session = Depends(get_db), user_id: str = Depends(get_current_user)):
+    garage = update_garage(db, quantity, food_id, user_id)
+    return garage
 
 
 @food_router.delete('/{food_id}')

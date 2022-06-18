@@ -30,3 +30,4 @@ class Garage(Base):
     food_id = Column(String, ForeignKey('foods.food_id'), primary_key=True)
     quantity = Column(Integer)
     limit_at = Column(Date)
+    thumbnail_url = Column(String)

@@ -11,14 +11,14 @@ from schemas.foods import GarageResponse
 food_router = APIRouter()
 
 
-@food_router.post('/', response_model=GarageResponse)
+@food_router.post('', response_model=GarageResponse)
 async def post_food(name: str, quantity: int, limit_at: date, thumbnail_url: str, db: Session = Depends(get_db), user_id: str = Depends(get_current_user)):
     garage_res = create_food(
         db, name, quantity, limit_at, user_id, thumbnail_url)
     return garage_res
 
 
-@food_router.get('/', response_model=List[GarageResponse])
+@food_router.get('', response_model=List[GarageResponse])
 async def get_foods(db: Session = Depends(get_db), user_id: str = Depends(get_current_user)):
     garage_list = get_foods_list(db, user_id)
     return garage_list

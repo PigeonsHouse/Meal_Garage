@@ -31,7 +31,7 @@ async def signin(payload: SignInPayload, db: Session = Depends(get_db)):
 #     return user
 
 
-@user_router.delete('/', response_model=DeleteDetailModel)
+@user_router.delete('', response_model=DeleteDetailModel)
 async def delete_user(db: Session = Depends(get_db), user_id: str = Depends(get_current_user)):
     if user_id is None:
         raise HTTPException(status_code=403, detail="jwt_token is invarid!")

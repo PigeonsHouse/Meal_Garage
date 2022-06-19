@@ -17,7 +17,8 @@ def scraping_data(recipe_name):
             thumbnail = recipe.div.img.get('src')
             url = recipe.h2.a.get('href')
             made_by = recipe.select('.recipe_author_name')[0].a.text
-
+        if(i >= 1 and title == recipes[i-1].title):
+            return recipes
         recipes.append(
             Recipes(
                 title=title,

@@ -16,11 +16,14 @@ def scraping_data(recipe_name):
             title = recipe.div.img.get('alt')
             thumbnail = recipe.div.img.get('src')
             url = recipe.h2.a.get('href')
+            made_by = recipe.select('.recipe_author_name')[0].a.text
+
         recipes.append(
             Recipes(
                 title=title,
                 recipe_thumbnail=thumbnail,
-                recipe_url=f"{base_url}{url}"
+                recipe_url=f"{base_url}{url}",
+                made_by=made_by
             )
         )
     return recipes
